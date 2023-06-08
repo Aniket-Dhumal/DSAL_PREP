@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+   <title>Tailwind CSS Form with MetaMask</title>
+   <script src="https://cdn.tailwindcss.com"></script>   
+   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+
+<body class="bg-gray-200">
+   <div class="container mx-auto mt-10">
+      <div class="max-w-md mx-auto bg-white rounded p-8">
+         <h2 class="text-2xl font-semibold mb-4">Seller Information</h2>
+         <form id="sellerForm">
+            <div class="mb-4">
+               <label class="block text-gray-700 text-sm font-bold mb-2" for="sellerName">Seller Name</label>
+               <input
+                  class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:border-indigo-500"
+                  id="sellerName" type="text" placeholder="Enter seller name">
+            </div>
+            <div class="mb-4">
+               <label class="block text-gray-700 text-sm font-bold mb-2" for="sellerLocation">Seller
+                  Location</label>
+               <input
+                  class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:border-indigo-500"
+                  id="sellerLocation" type="text" placeholder="Enter seller location">
+            </div>
+            <div class="mb-4">
+               <label class="block text-gray-700 text-sm font-bold mb-2" for="sellerAddress">Seller
+                  Address (blockchain)</label>
+               <input
+                  class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:border-indigo-500"
+                  id="sellerAddress" type="text" placeholder="Enter seller address">
+            </div>
+            <div class="mb-4">
+               <label class="block text-gray-700 text-sm font-bold mb-2" for="sellerContactNumber">Seller
+                  Contact Number</label>
+               <input
+                  class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:border-indigo-500"
+                  id="sellerContactNumber" type="text" placeholder="Enter seller contact number">
+            </div>
+            <div class="flex items-center justify-center mt-6">
+               <button
+                  class="bg-indigo-500 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                  type="submit">
+                  Submit
+               </button>
+            </div>
+         </form>
+      </div>
+   </div>
+
+   <script src="https://cdn.jsdelivr.net/gh/ethereum/web3.js/dist/web3.min.js"></script>
+   <script>
+      // Check if MetaMask is installed
+      if (typeof window.ethereum === 'undefined') {
+         alert('MetaMask is not installed. Please install MetaMask to use this application.');
+      } else {
+         // Create a web3 instance using MetaMask provider
+         var web3 = new Web3(window.ethereum);
+         
+         // Contract ABI
+         var contractABI = [
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "sellerAddress",
+				"type": "address"
+			},
+			{
+				"internalType": "string",
+				"name": "name",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "location",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "contactNumber",
+				"type": "string"
+			}
+		],
+		"name": "addSeller",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "sellerAddress",
+				"type": "address"
+			}
+		],
+		"name": "removeSeller",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"stateMutability": "nonpayable",
+		"type": "constructor"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "newName",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "newLocation",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "newContactNumber",
+				"type": "string"
+			}
+		],
+		"name": "updateManufacturerDetails",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "sellerAddress",
+				"type": "address"
+			}
+		],
+		"name": "getSellerDetails",
+		"outputs": [
+			{
+				"internalType": "string",
+				"name": "name",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "location",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "contactNumber",
+				"type": "string"
+			},
+			{
+				"internalType": "uint256",
+				"name": "sellerId",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "sellerAddress",
+				"type": "address"
+			}
+		],
+		"name": "isSeller",
+		"outputs": [
+			{
+				"internalType": "bool",
+				"name": "",
+				"type": "bool"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "owner",
+		"outputs": [
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"name": "sellers",
+		"outputs": [
+			{
+				"internalType": "string",
+				"name": "name",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "location",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "contactNumber",
+				"type": "string"
+			},
+			{
+				"internalType": "uint256",
+				"name": "sellerId",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	}
+];
+         
+         // Contract address
+         var contractAddress = '0xcD67cD12D30b7F4a2Dc17bAeCe783A039c6082f0';
+         
+         // Contract instance
+         var contractInstance = new web3.eth.Contract(contractABI , contractAddress);
+         console.log(web3.eth.accounts)
+         // Handle form submission
+     $('#sellerForm').on('submit', async function (e) {
+        e.preventDefault();
+
+        // Get form values
+        var sellerName = $('#sellerName').val();
+        var sellerLocation = $('#sellerLocation').val();
+        var sellerAddress = $('#sellerAddress').val();
+        var sellerContactNumber = $('#sellerContactNumber').val();
+
+        try {
+           // Send transaction to the smart contract
+           console.log("trying to add the first seller"+web3.eth.accounts[0]);
+           var result = await contractInstance.methods.addSeller(sellerAddress,sellerName, sellerLocation, sellerContactNumber).send({
+              from: web3.eth.accounts[0]
+           });
+
+           // Transaction successful, do something with the result
+           console.log('Transaction successful', result);
+
+           // Clear form fields
+           $('#sellerName').val('');
+           $('#sellerLocation').val('');
+           $('#sellerAddress').val('');
+           $('#sellerContactNumber').val('');
+
+           // Show success message
+           alert('Seller registered successfully!');
+        } catch (error) {
+           // Transaction failed, handle the error
+           console.error('Transaction failed', error);
+           alert('Failed to register seller. Please try again.');
+        }
+     });
+  }
+
+</script>
+</body>
+</html>
