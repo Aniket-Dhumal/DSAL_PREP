@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>LangoConver/Home</title>
+</head>
+<style>
+body {
+  background-image: url("bg.png");
+   }
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: rgba(255, 251, 251, 0.95);
+}
+
+li {
+  float: right;
+}
+
+li a {
+    border-right: 1px solid #bbb;
+    font-size: 30px;
+      display: block;
+  color: black;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+li a:hover {
+  background-color: rgb(245, 240, 240);
+}
+.dropbtn {
+  background-color: #FBFBFB;
+  color: black;
+  padding: 16px;
+  font-size: 23px;
+  border: none;
+  cursor: pointer;
+  width: 510px;
+height: 69px;
+left: 76px;
+top: 500px;
+border-radius: 23px;
+}
+
+.dropdown {
+  position: absolute;left:120px;top:130px;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+  width: 430px;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content a:hover {background-color: #f1f1f1}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.dropdown:hover .dropbtn {
+  background-color: rgb(248, 223, 223);
+}
+
+.dropbtn1 {
+  background-color: #FBFBFB;
+  color: black;
+  padding: 16px;
+  font-size: 23px;
+  border: none;
+  cursor: pointer;
+  width: 510px;
+height: 69px;
+left: 76px;
+top: 500px;
+border-radius: 23px;
+}
+
+.dropdown1 {
+  position: absolute;left:900px;top:130px;
+  display: inline-block;
+}
+
+.dropdown1-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+  width: 430px;
+}
+
+.dropdown1-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown1-content a:hover {background-color: #f1f1f1}
+
+.dropdown1:hover .dropdown1-content {
+  display: block;
+}
+
+.dropdown1:hover .dropbtn1 {
+  background-color: rgb(248, 223, 223);
+}
+
+.button {
+  background-color: #FFF8FD;
+  border: none;
+  color: black;
+  padding: 20px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.button1 {border-radius: 25%;width:6.8%;margin-top:70px;margin-left:100px}
+.button2 {border-radius: 25%;width:7.5%;margin-top:70px;margin-left:130px}
+
+</style>
+<body>
+<ul>
+  <li><a class="active" href="home1.html">Home</a></li>
+  <li><a href="about.html">About</a></li>
+</ul>
+
+<div class="dropdown">
+  <button class="dropbtn">Select the Language</button>
+  <div class="dropdown-content">
+  <a href="#">Link 1</a>
+  <a href="#">Link 2</a>
+  <a href="#">Link 3</a>
+  </div>
+</div>
+
+<div class="dropdown1">
+  <button class="dropbtn1">Select the Language</button>
+  <div class="dropdown1-content">
+  <a href="#">Link 1</a>
+  <a href="#">Link 2</a>
+  <a href="#">Link 3</a>
+  </div>
+</div>
+
+<div class="col-71">
+<textarea style="width: 38%; height: 200px; margin-left: 78px; margin-top: 170px; " placeholder="Enter the text that you want to convert"></textarea>
+</div>
+
+<div class="col-75">
+      <textarea style="width: 38%; height: 200px; margin-left: 875px; margin-top: -300px; " placeholder="Your Converted Text"></textarea>
+    </div>
+
+<button class="button button1">CLEAR</button>
+<button class="button button2">CONVERT</button>
+</body>
+</html>
