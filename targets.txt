@@ -1,9 +1,0 @@
-M-III -  Probabilty , Stats , Numerical Methods
-DSA - GRAPH, SEARCH TREES, Indexed and Multiway Trees, File Organization
-Microprocessor  - 80386 Instruction set, Memory Management, Protection ,Multitasking & Virtual Mode
-Software Engineering : Estimation & Sheduling , Design Engineering , Risk & Configuration Management,Testing
-PPL : JAVA 
-
-9/5/23
-DSA - File Organization + ARRAY + Writing 
-MP - Writing 
