@@ -28,6 +28,7 @@ void buildTree(node* &root){
 	cout<<"If Node Dosen't has child please Enter -1"<<endl;
 	queue<node*> q;
 	int Data;
+	
     cout<<"Enter Value for Root : "<<endl;
     cin>>Data;
     root = new node(Data);
