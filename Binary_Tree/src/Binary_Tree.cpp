@@ -84,6 +84,7 @@ void Postorder(node* root){
 	cout<<root->data<<" ";
 }
 
+
 void nodeCount(node* root, int &Lcount, int &Incount){
      if(root == NULL){
     	 return;
